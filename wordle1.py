@@ -12,9 +12,11 @@ core_words = {
 
 word_list = [
     "magic", "library", "adventure", "secret", "listen", "sneak",
-    "midnight", "character", "alice", "rabbit", "pirate",
-    "council", "tale", "wisdom", "borrow", "story", "lover",
-    "curious", "clock", "page", "amaze", "change", "return"
+    "midnight", "character", "change", "inspire", "pirate",
+    "council", "tale", "wisdom", "leave", "story", "approach",
+    "curious", "dawn", "keep", "promise", "change", "return",
+    "learn", "whole", "spend", "contain", "wisdom", "discuss", "join", "invite",
+    "island", "treasure", "decide", "bring", "curious", "enchant", "stand", "rumor"
 ]
 
 # User input
