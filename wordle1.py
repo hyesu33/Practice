@@ -17,6 +17,9 @@ word_list = [
     "curious", "clock", "page", "amaze", "change", "return"
 ]
 
+# User input
+guess = st.text_input("Enter your guess:").strip().lower()
+
 if 'answer' not in st.session_state:
     st.session_state.answer = random.choice(list(core_words.keys()))
     st.session_state.definition = core_words[st.session_state.answer]
