@@ -5,7 +5,7 @@ import random
 # Load and clean data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("wordlist.csv")
+    df = pd.read_csv("https://raw.githubusercontent.com/hyesu33/Myapps/refs/heads/main/wordlist.csv")
     df["word"] = df["word"].str.lower().str.strip()
     df["meaning"] = df["meaning"].str.strip()
     return df
