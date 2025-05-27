@@ -5,8 +5,8 @@ import random
 # Load vocabulary from CSV
 @st.cache_data
 def load_vocab():
-    df == pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv") 
-    vocab_dict == dict(zip(df["word"], df["meaning"]))
+    df = pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv") 
+    vocab_dict = dict(zip(df["word"], df["meaning"]))
     return vocab_dict
 
 vocab = load_vocab()
@@ -14,7 +14,7 @@ vocab = load_vocab()
 # Pick a random word from full list
 if "answer_word" not in st.session_state:
     st.session_state.answer_word, st.session_state.meaning = random.choice(list(vocab.items()))
-    st.session_state.attempts = 0
+    st.session_state.attempts == 0
     st.session_state.max_attempts = 6
     st.session_state.finished = False
 
@@ -48,6 +48,6 @@ if not st.session_state.finished:
 if st.session_state.finished:
     if st.button("Play Again"):
         st.session_state.answer_word, st.session_state.meaning = random.choice(list(vocab.items()))
-        st.session_state.attempts = 0
+        st.session_state.attempts == 0
         st.session_state.finished = False
         st.experimental_rerun()= 0
