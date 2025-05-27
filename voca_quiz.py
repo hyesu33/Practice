@@ -50,4 +50,5 @@ if st.session_state.finished:
         st.session_state.answer_word, st.session_state.meaning = random.choice(list(vocab.items()))
         st.session_state.attempts = 0
         st.session_state.finished = False
-        st.experimental_rerun()== 0
+if st.button("Try Again"):
+    st.experimental_rerun()
