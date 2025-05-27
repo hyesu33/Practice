@@ -1,47 +1,53 @@
 import streamlit as st
+import pandas as pd
 import random
 
-# Vocabulary dictionary (word: meaning)
-vocab = {
-    "library": "도서관",
-    "character": "성격",
-    "midnight": "밤 열두시",
-    "rumor": "소문",
-    "adventure": "모험",
-    "whisper": "속삭이다"
-}
+# Load vocabulary from CSV
+@st.cache_data
+def load_vocab():
+    df = pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv")  # 파일 경로는 업로드한 파일 기준
+    vocab_dict = dict(zip(df["word"], df["meaning"]))
+    return vocab_dict
 
-# Shuffle and select 5 random questions
-quiz_items = random.sample(list(vocab.items()), 5)
+vocab = load_vocab()
 
-# App title
-st.title("📚 Vocabulary Quiz Game")
+# Pick a random word from full list
+if "answer_word" not in st.session_state:
+    st.session_state.answer_word, st.session_state.meaning = random.choice(list(vocab.items()))
+    st.session_state.attempts = 0
+    st.session_state.max_attempts = 6
+    st.session_state.finished = False
 
-# Session state for tracking progress
-if "step" not in st.session_state:
-    st.session_state.step = 0
-    st.session_state.score = 0
-    st.session_state.answers = []
+st.title("🔤 Vocabulary Guessing Game")
+st.write("Guess the word based on its Korean meaning.")
+st.write(f"📘 Meaning: **{st.session_state.meaning}**")
+st.write(f"🔡 Number of letters: **{len(st.session_state.answer_word)}**")
+st.write(f"🎯 You have {st.session_state.max_attempts - st.session_state.attempts} attempts remaining.")
 
-# Show quiz if not finished
-if st.session_state.step < len(quiz_items):
-    current_word, current_meaning = quiz_items[st.session_state.step]
-
-    st.subheader(f"Question {st.session_state.step + 1} of {len(quiz_items)}")
-    st.write(f"**Meaning:** {current_meaning}")
-    answer = st.text_input("Enter the English word:", key=st.session_state.step)
+# Input
+if not st.session_state.finished:
+    user_guess = st.text_input("Your guess:").strip().lower()
 
     if st.button("Submit"):
-        if answer.strip().lower() == current_word.lower():
-            st.success("✅ Correct!")
-            st.session_state.score += 1
+        if user_guess == "":
+            st.warning("Please enter a word.")
         else:
-            st.error(f"❌ Incorrect! The correct answer was **{current_word}**.")
-        st.session_state.step += 1
+            st.session_state.attempts += 1
 
-else:
-    st.subheader("🎉 Quiz Finished!")
-    st.write(f"Your score: **{st.session_state.score} / {len(quiz_items)}**")
+            if user_guess == st.session_state.answer_word.lower():
+                st.success(f"✅ Correct! The word was **{st.session_state.answer_word}**.")
+                st.session_state.finished = True
+            else:
+                if st.session_state.attempts >= st.session_state.max_attempts:
+                    st.error(f"❌ Out of attempts! The word was **{st.session_state.answer_word}**.")
+                    st.session_state.finished = True
+                else:
+                    st.warning("Incorrect. Try again.")
+
+# Restart
+if st.session_state.finished:
     if st.button("Play Again"):
-        st.session_state.step = 0
-        st.session_state.score = 0
+        st.session_state.answer_word, st.session_state.meaning = random.choice(list(vocab.items()))
+        st.session_state.attempts = 0
+        st.session_state.finished = False
+        st.experimental_rerun()= 0
