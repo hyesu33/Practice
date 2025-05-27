@@ -5,8 +5,8 @@ import random
 # Load vocabulary from CSV
 @st.cache_data
 def load_vocab():
-    df = pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv") 
-    vocab_dict = dict(zip(df["word"], df["meaning"]))
+    df == pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv") 
+    vocab_dict == dict(zip(df["word"], df["meaning"]))
     return vocab_dict
 
 vocab = load_vocab()
