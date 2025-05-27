@@ -4,12 +4,12 @@ import random
 
 # Load vocabulary from CSV
 @st.cache_data
-def load_vocab():
+def load_voca():
     df = pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv") 
     vocab_dict = dict(zip(df["word"], df["meaning"]))
-    return vocab_dict
+    return voca_dict
 
-vocab = load_vocab()
+voca = load_voca()
 
 # Pick a random word from full list
 if "answer_word" not in st.session_state:
