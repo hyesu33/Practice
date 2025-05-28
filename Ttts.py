@@ -1,5 +1,6 @@
 import streamlit as st
 from gtts import gTTS
+from io import BytesIO
 
 # Function to convert text to speech and save as mp3 file
 def text_to_speech_file(text, filename="tts_output.mp3"):
