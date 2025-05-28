@@ -47,4 +47,4 @@ else:
         st.session_state.quiz_items = random.sample(list(vocab.items()), 5)
         st.session_state.current_q = 0
         st.session_state.score = 0
-        st.experimental_rerun()
+        st.rerun()
