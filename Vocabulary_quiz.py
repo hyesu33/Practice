@@ -36,7 +36,7 @@ if st.session_state.current_q < len(st.session_state.quiz_items):
         else:
             st.error(f"❌ Incorrect! The correct answer was **{answer_word}**.")
         st.session_state.current_q += 1
-        st.experimental_rerun()
+        st.rerun()
 
 # Display final score
 else:
