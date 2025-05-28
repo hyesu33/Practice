@@ -7,7 +7,7 @@ import random
 def load_vocab():
     url = "https://raw.githubusercontent.com/KY7437/G01Final/main/wordlist.csv"
     df = pd.read_csv(url)
-    vocab_dict = dict(zip(df["word"], df["meaning"])) 
+    vocab_dict = dict(zip(df["Word"], df["Meaning"])) 
     return vocab_dict
 
 vocab = load_vocab()
