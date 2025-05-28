@@ -4,7 +4,7 @@ import random
 # Load your word list CSV
 @st.cache_data
 def load_vocab():
-    df = pd.read_csv("/mnt/data/wordlist.csv")  # Make sure the file path matches your upload
+    df = pd.read_csv("https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv")  # Make sure the file path matches your upload
     vocab_dict = dict(zip(df["word"], df["meaning"]))
     return vocab_dict
 
