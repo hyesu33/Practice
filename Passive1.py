@@ -31,7 +31,8 @@ base_to_pp = {
 subject_to_object = {
     "I": "me", "He": "him", "She": "her", "It": "it",
     "We": "us", "They": "them",
-    "Tom": "Tom", "John": "John", "Mary": "Mary", "The teacher": "the teacher", "The chef": "the chef"
+    "Tom": "Tom", "John": "John", "Mary": "Mary", "The teacher": "the teacher", "The chef": "the chef", "A student": "a student"
+
 }
 
 if "index" not in st.session_state:
