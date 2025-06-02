@@ -19,7 +19,7 @@ examples = [
 
 # 동사 형태 매핑
 past_to_pp = {
-    "ate": "eaten", "wrote": "written", "saw": "seen", "made": "made",
+    "ate": "eaten", "wrote": "written", "saw": "seen", "make": "made",
     "took": "taken", "did": "done", "bought": "bought", "found": "found",
     "sent": "sent", "read": "read", "said": "said", "went": "gone", "gave": "given"
 }
