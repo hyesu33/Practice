@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Passive Practice", page_icon="📝")
-st.title("📝 Active to Passive Voice Practice")
+st.title("📝 Active to Passive Practice")
 
 examples = [
     "Tom eats an apple.",
