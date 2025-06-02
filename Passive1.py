@@ -1,15 +1,64 @@
-# 목적격 변환 딕셔너리 추가
-subject_to_object = {
-    "I": "me", "you": "you", "he": "him", "she": "her", "it": "it",
-    "we": "us", "they": "them",
-    "Tom": "Tom", "John": "John", "Mary": "Mary",  # 이름은 그대로
+import streamlit as st
+
+st.set_page_config(page_title="Passive Practice", page_icon="📝")
+st.title("📝 Active to Passive Voice Practice")
+
+examples = [
+    "Tom eats an apple.",
+    "She wrote a letter.",
+    "They make cookies.",
+    "He buys a car.",
+    "We saw a movie.",
+    "I took a picture.",
+    "You did the homework.",
+    "The chef made a cake.",
+    "A student found the book.",
+    "The teacher sent a message."
+]
+
+past_to_pp = {
+    "ate": "eaten", "wrote": "written", "saw": "seen", "made": "made",
+    "took": "taken", "did": "done", "bought": "bought", "found": "found",
+    "sent": "sent", "read": "read", "said": "said", "went": "gone", "gave": "given"
 }
+
+base_to_pp = {
+    "eat": "eaten", "write": "written", "see": "seen", "make": "made",
+    "take": "taken", "do": "done", "buy": "bought", "find": "found",
+    "send": "sent", "read": "read", "say": "said", "go": "gone", "give": "given"
+}
+
+subject_to_object = {
+    "I": "me", "You": "you", "He": "him", "She": "her", "It": "it",
+    "We": "us", "They": "them",
+    "Tom": "Tom", "John": "John", "Mary": "Mary",
+}
+
+if "index" not in st.session_state:
+    st.session_state.index = 0
+if "current_sentence" not in st.session_state:
+    st.session_state.current_sentence = examples[0]
+if "show_passive" not in st.session_state:
+    st.session_state.show_passive = False
+
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("🔄 Show Passive"):
+        st.session_state.show_passive = True
+with col2:
+    if st.button("➡️ Next Sentence"):
+        st.session_state.index = (st.session_state.index + 1) % len(examples)
+        st.session_state.current_sentence = examples[st.session_state.index]
+        st.session_state.show_passive = False
+
+current = st.session_state.current_sentence
+
+st.markdown(f"<h3 style='font-size:28px;'>✏️ Active Sentence: {current}</h3>", unsafe_allow_html=True)
 
 def convert_to_passive(sentence):
     sentence = sentence.strip().rstrip(".")
     words = sentence.split()
 
-    # 주어, 동사, 목적어 분리
     if words[0].lower() in ["the", "a", "an"]:
         subject = f"{words[0]} {words[1]}"
         verb = words[2]
@@ -20,11 +69,9 @@ def convert_to_passive(sentence):
         obj_words = words[2:]
 
     obj = " ".join(obj_words)
-    subject_lower = subject.lower()
     plural_subjects = ["they", "we", "you"]
-    is_plural = any(plural in subject_lower for plural in plural_subjects)
+    is_plural = any(plural in subject.lower() for plural in plural_subjects)
 
-    # 동사 형태 결정
     if verb in past_to_pp:
         be = "were" if is_plural else "was"
         past_participle = past_to_pp[verb]
@@ -38,11 +85,9 @@ def convert_to_passive(sentence):
     else:
         return None, f"❗ Unknown verb: '{verb}'"
 
-    # 주어 목적격으로 변환
     subject_key = subject.strip().capitalize()
     object_form = subject_to_object.get(subject_key, subject)
 
-    # 최종 수동태 문장
     passive = f"{obj.capitalize()} {be} {past_participle} by {object_form}."
     explanation = (
         f"➡ Subject = **{subject}** → **by {object_form}** (objective form)\n"
@@ -51,3 +96,11 @@ def convert_to_passive(sentence):
         f"➡ Passive = **{passive}**"
     )
     return passive, explanation
+
+if st.session_state.show_passive:
+    result, explanation = convert_to_passive(current)
+    if result:
+        st.markdown(f"<h3 style='font-size:28px;'>✅ Passive Voice: {result}</h3>", unsafe_allow_html=True)
+        st.markdown(f"### 🧠 Explanation:\n{explanation}")
+    else:
+        st.warning(explanation)
