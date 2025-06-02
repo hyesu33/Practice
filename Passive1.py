@@ -101,7 +101,7 @@ def convert_to_passive(sentence):
 if st.session_state.show_passive:
     result, explanation = convert_to_passive(current)
     if result:
-        st.markdown(f"<h3 style='font-size:28px;'>✅ Passive: {result}</h3>", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='font-size:28px;'>✅ Passive Sentnece: {result}</h3>", unsafe_allow_html=True)
         st.markdown(f"### 🧠 Explanation:\n{explanation}")
     else:
         st.warning(explanation)
