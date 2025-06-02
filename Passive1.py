@@ -19,7 +19,7 @@ examples = [
 past_to_pp = {
     "ate": "eaten", "wrote": "written", "saw": "seen", "made": "made",
     "took": "taken", "did": "done", "bought": "bought", "found": "found",
-    "sent": "sent", "read": "read", "said": "said", "went": "gone", "gave": "given"
+    "sent": "sent", "read": "read", "said": "said", "went": "gone", "gave": "given", "make": "made"
 }
 
 base_to_pp = {
