@@ -10,7 +10,7 @@ examples = [
     "He buys a car.",
     "We saw a movie.",
     "I took a picture.",
-    "You did the homework.",
+    "I did the homework.",
     "The chef made a cake.",
     "A student found the book.",
     "The teacher sent a message."
@@ -29,9 +29,9 @@ base_to_pp = {
 }
 
 subject_to_object = {
-    "I": "me", "You": "you", "He": "him", "She": "her", "It": "it",
+    "I": "me", "He": "him", "She": "her", "It": "it",
     "We": "us", "They": "them",
-    "Tom": "Tom", "John": "John", "Mary": "Mary",
+    "Tom": "Tom", "John": "John", "Mary": "Mary", "The teacher": "the teacher"
 }
 
 if "index" not in st.session_state:
